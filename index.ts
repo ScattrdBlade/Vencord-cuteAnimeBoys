@@ -1,5 +1,11 @@
-import { ApplicationCommandOptionType } from "../../api/Commands";
-import definePlugin from "../../utils/types";
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import { ApplicationCommandOptionType } from "@api/Commands";
+import definePlugin from "@utils/types";
 
 function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -10,7 +16,7 @@ async function fetchReddit(sub: string) {
     const resp = await res.json();
     try {
         const { children } = resp.data;
-        let r = rand(0, children.length-1);
+        const r = rand(0, children.length - 1);
         return children[r].data.url;
     } catch (err) {
         console.error(resp);
@@ -21,10 +27,16 @@ async function fetchReddit(sub: string) {
 
 export default definePlugin({
     name: "Cute-Anime-Boys",
-    authors: [{
-        name: "Shady Goat",
-        id: BigInt(376079696489742338),
-    }],
+    authors: [
+        {
+            name: "Shady Goat",
+            id: 376079696489742338n,
+        },
+        {
+            name: "ScattrdBlade",
+            id: 678007540608532491n,
+        },
+    ],
     description: "Add a command to send cute anime boys in the chat",
     dependencies: ["CommandsAPI"],
     commands: [{
